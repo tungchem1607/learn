@@ -57,22 +57,23 @@ describe("numberLCD", () => {
   });
 });
 
-describe("numberLCDver2", () => {
+describe("numberLCD ver2", () => {
   const dataInputVer2 = new Map<string, (string | number)[]>([
     [
       "Number 2",
       [
         2,
         `
- ___ 
-    |
-    |
- ___ 
-|    
-|___ 
+ __ 
+   |
+   |
+ __|
+|   
+|   
+|__ 
 `,
-        3,
         2,
+        3,
       ],
     ],
   ]);

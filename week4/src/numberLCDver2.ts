@@ -110,8 +110,8 @@ export default class numberLCDver2 {
     if (!width && !height) {
       return digit;
     }
-    return this.resizeDigitHeight(digit, height);
-    // return this.resizeDigitWidth(this.resizeDigitHeight(digit, height), width);
+    // return this.resizeDigitHeight(digit, height);
+    return this.resizeDigitWidth(this.resizeDigitHeight(digit, height), width);
   }
 
   private resizeDigitWidth(digit: string, width: number) {
@@ -150,15 +150,15 @@ export default class numberLCDver2 {
     if (height <= 1) {
       return digit;
     }
+
     const digitSplit = digit.split(this.CARRIAGE_RETURN);
-    console.log('digitSplit', digitSplit);
     let digitResize = this.CARRIAGE_RETURN;
     const upperLine = digitSplit[2];
     const downLine = digitSplit[3];
     const lineWidth = digitSplit[2].length;
 
     digitResize += `${digitSplit[1]}\n`;
-    for (let iteratorHeight = 0; iteratorHeight < height; iteratorHeight++) {
+    for (let iteratorHeight = 0; iteratorHeight < height - 1; iteratorHeight++) {
       digitResize += `${upperLine.charAt(0)} ${upperLine.charAt(
         lineWidth - 1
       )}\n`;
@@ -167,9 +167,8 @@ export default class numberLCDver2 {
     digitResize += `${upperLine.charAt(0)}${upperLine.charAt(
       1
     )}${upperLine.charAt(2)}\n`;
-    console.log('digitResize', digitResize);
 
-    for (let iteratorHeight = 0; iteratorHeight < height; iteratorHeight++) {
+    for (let iteratorHeight = 0; iteratorHeight < height - 1; iteratorHeight++) {
       digitResize += `${downLine.charAt(0)} ${downLine.charAt(
         lineWidth - 1
       )}\n`;
@@ -177,6 +176,7 @@ export default class numberLCDver2 {
     digitResize += `${downLine.charAt(0)}${downLine.charAt(1)}${downLine.charAt(
       lineWidth - 1
     )}\n`;
+
     return digitResize;
   }
 }
